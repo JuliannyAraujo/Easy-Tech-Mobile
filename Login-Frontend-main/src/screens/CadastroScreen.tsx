@@ -1,5 +1,6 @@
+import { Ionicons } from '@expo/vector-icons'; // Importando ícones do Ionicons
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 const CadastroScreen: React.FC<any> = ({ navigation }) => {
   const [nome, setNome] = useState('');
@@ -12,8 +13,6 @@ const CadastroScreen: React.FC<any> = ({ navigation }) => {
   const [numero, setNumero] = useState('');
   const [complemento, setComplemento] = useState('');
   const [telefone, setTelefone] = useState('');
-  const [nomePlano, setNomePlano] = useState('');
-  const [tipoPlano, setTipoPlano] = useState('');
 
   const handleCadastro = async () => {
     if (senha !== confirmarSenha) {
@@ -27,7 +26,7 @@ const CadastroScreen: React.FC<any> = ({ navigation }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ nome, cpf, email, senha, cep, endereco, numero, complemento, telefone, nomePlano, tipoPlano }),
+        body: JSON.stringify({ nome, cpf, email, senha, cep, endereco, numero, complemento, telefone }),
       });
 
       if (!response.ok) {
@@ -43,94 +42,122 @@ const CadastroScreen: React.FC<any> = ({ navigation }) => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Cadastro</Text>
-      
-      <Text style={styles.sectionTitle}>Dados Pessoais</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Nome Completo"
-        value={nome}
-        onChangeText={setNome}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="CPF"
-        value={cpf}
-        onChangeText={setCpf}
-        keyboardType="numeric"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="E-mail"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Crie uma senha"
-        value={senha}
-        onChangeText={setSenha}
-        secureTextEntry
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Repita a senha"
-        value={confirmarSenha}
-        onChangeText={setConfirmarSenha}
-        secureTextEntry
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="CEP"
-        value={cep}
-        onChangeText={setCep}
-        keyboardType="numeric"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Endereço"
-        value={endereco}
-        onChangeText={setEndereco}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Número"
-        value={numero}
-        onChangeText={setNumero}
-        keyboardType="numeric"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Complemento"
-        value={complemento}
-        onChangeText={setComplemento}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Telefone"
-        value={telefone}
-        onChangeText={setTelefone}
-        keyboardType="phone-pad"
-      />
+      <Text style={styles.title}>Cadastro de Conta</Text>
 
-      <Text style={styles.sectionTitle}>Informações sobre seu plano de saúde</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Nome do plano de saúde"
-        value={nomePlano}
-        onChangeText={setNomePlano}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Tipo do plano de saúde"
-        value={tipoPlano}
-        onChangeText={setTipoPlano}
-      />
+      <Text style={styles.sectionTitle}>Informações Pessoais</Text>
+
+      {/* Campos de Cadastro */}
+      <View style={styles.inputContainer}>
+        <Ionicons name="person-outline" size={24} color="#388e3c" style={styles.icon} />
+        <TextInput
+          style={styles.input}
+          placeholder="Nome Completo"
+          value={nome}
+          onChangeText={setNome}
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <Ionicons name="id-card-outline" size={24} color="#388e3c" style={styles.icon} />
+        <TextInput
+          style={styles.input}
+          placeholder="CPF"
+          value={cpf}
+          onChangeText={setCpf}
+          keyboardType="numeric"
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <Ionicons name="mail-outline" size={24} color="#388e3c" style={styles.icon} />
+        <TextInput
+          style={styles.input}
+          placeholder="E-mail"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <Ionicons name="lock-closed-outline" size={24} color="#388e3c" style={styles.icon} />
+        <TextInput
+          style={styles.input}
+          placeholder="Crie uma senha"
+          value={senha}
+          onChangeText={setSenha}
+          secureTextEntry
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <Ionicons name="lock-closed-outline" size={24} color="#388e3c" style={styles.icon} />
+        <TextInput
+          style={styles.input}
+          placeholder="Repita a senha"
+          value={confirmarSenha}
+          onChangeText={setConfirmarSenha}
+          secureTextEntry
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <Ionicons name="location-outline" size={24} color="#388e3c" style={styles.icon} />
+        <TextInput
+          style={styles.input}
+          placeholder="CEP"
+          value={cep}
+          onChangeText={setCep}
+          keyboardType="numeric"
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <Ionicons name="home-outline" size={24} color="#388e3c" style={styles.icon} />
+        <TextInput
+          style={styles.input}
+          placeholder="Endereço"
+          value={endereco}
+          onChangeText={setEndereco}
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <Ionicons name="home-outline" size={24} color="#388e3c" style={styles.icon} />
+        <TextInput
+          style={styles.input}
+          placeholder="Número"
+          value={numero}
+          onChangeText={setNumero}
+          keyboardType="numeric"
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <Ionicons name="home-outline" size={24} color="#388e3c" style={styles.icon} />
+        <TextInput
+          style={styles.input}
+          placeholder="Complemento"
+          value={complemento}
+          onChangeText={setComplemento}
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <Ionicons name="call-outline" size={24} color="#388e3c" style={styles.icon} />
+        <TextInput
+          style={styles.input}
+          placeholder="Telefone"
+          value={telefone}
+          onChangeText={setTelefone}
+          keyboardType="phone-pad"
+        />
+      </View>
 
       <TouchableOpacity style={styles.button} onPress={handleCadastro}>
         <Text style={styles.buttonText}>Cadastrar</Text>
       </TouchableOpacity>
+
       <TouchableOpacity onPress={() => navigation.navigate('Login')}>
         <Text style={styles.linkText}>Já tem uma conta? Faça login</Text>
       </TouchableOpacity>
@@ -142,50 +169,65 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     padding: 20,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#eaf8e0', // Verde claro remetendo à energia limpa e sustentabilidade
   },
   title: {
     fontSize: 32,
     fontWeight: 'bold',
-    marginBottom: 30,
-    color: '#333',
+    color: '#388e3c', // Verde sustentável
+    textAlign: 'center',
+    marginVertical: 30,
+    fontFamily: 'Roboto-Bold',
   },
   sectionTitle: {
-    fontSize: 22,
-    fontWeight: 'bold',
+    fontSize: 20,
+    fontWeight: '600',
     marginVertical: 15,
-    color: '#444',
+    color: '#388e3c',
+    fontFamily: 'Roboto-Regular',
   },
-  input: {
-    width: '100%',
-    padding: 15,
-    borderRadius: 10,
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 20,
     backgroundColor: '#fff',
-    borderColor: '#ddd',
+    borderRadius: 12,
+    padding: 10,
     borderWidth: 1,
-    elevation: 2,
+    borderColor: '#ddd',
+    elevation: 4,
+  },
+  icon: {
+    marginRight: 10,
+  },
+  input: {
+    flex: 1,
+    fontSize: 16,
+    color: '#333',
+    fontFamily: 'Roboto-Regular',
   },
   button: {
-    backgroundColor: '#007bff',
-    padding: 15,
-    borderRadius: 10,
+    backgroundColor: '#388e3c', // Verde forte
+    padding: 16,
+    borderRadius: 12,
     width: '100%',
     alignItems: 'center',
-    marginTop: 20,
-    elevation: 5,
+    marginTop: 30,
+    elevation: 6,
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
     fontWeight: '600',
+    fontFamily: 'Roboto-Medium',
   },
   linkText: {
     fontSize: 16,
-    color: '#007bff',
+    color: '#388e3c',
     marginTop: 20,
     textDecorationLine: 'underline',
     textAlign: 'center',
+    fontFamily: 'Roboto-Regular',
   },
 });
 
