@@ -1,7 +1,7 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { NativeBaseProvider } from 'native-base';
+import React from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ProvedorEstadoGlobal } from '../hooks/EstadoGlobal';
 
 // Definimos aqui o tipo para a propriedade navigation
@@ -19,15 +19,24 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
     <NativeBaseProvider>
       <ProvedorEstadoGlobal>
         <View style={styles.container}>
-          <Text style={styles.title}>Bem-vindo ao Sistema de Agendamento</Text>
-          <TouchableOpacity style={styles.button} onPress={() => navigateTo('Agendamentos')}>
-            <Text style={styles.buttonText}>Agendamentos</Text>
+          <Text style={styles.title}>Bem-vindo ao Educativo Energético</Text>
+          <Text style={styles.subtitle}>
+            Explore e aprenda sobre a economia de energia e práticas sustentáveis.
+          </Text>
+
+          {/* Módulos de Educação */}
+          <TouchableOpacity style={styles.button} onPress={() => navigateTo('ModulosDeEducacao')}>
+            <Text style={styles.buttonText}>Módulos de Educação</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => navigateTo('Token')}>
-            <Text style={styles.buttonText}>Token</Text>
+
+          {/* Desafios e Jogos */}
+          <TouchableOpacity style={styles.button} onPress={() => navigateTo('DesafiosEJogos')}>
+            <Text style={styles.buttonText}>Desafios e Jogos</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => navigateTo('Carteira Digital ')}>
-            <Text style={styles.buttonText}>Carteira Digital </Text>
+
+          {/* Progresso e Resultados */}
+          <TouchableOpacity style={styles.button} onPress={() => navigateTo('ProgressoEResultados')}>
+            <Text style={styles.buttonText}>Progresso e Resultados</Text>
           </TouchableOpacity>
         </View>
       </ProvedorEstadoGlobal>
@@ -41,16 +50,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#e0f7fa', // Azul claro, remetendo à energia limpa e natureza
   },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: '#333',
+    color: '#388e3c', // Verde sustentável
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: 18,
+    color: '#004d40', // Tom de verde mais escuro, harmônico com o tema
+    textAlign: 'center',
+    marginBottom: 40,
+    paddingHorizontal: 30,
   },
   button: {
-    backgroundColor: '#007bff',
+    backgroundColor: '#388e3c', // Verde forte, associado à sustentabilidade
     padding: 16,
     borderRadius: 8,
     marginBottom: 15,
